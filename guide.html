@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Firn guide: how to use every part of the app</title>
+  <meta name="description" content="How to use Firn: the omnibar, Today, calendar, todos, notes, people, presenting, sync and connecting your accounts.">
+  <link rel="canonical" href="https://cbradev.ch/firn/guide">
+  <meta name="theme-color" content="#14234b">
+  <link rel="icon" href="/firn/img/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/firn/style.css">
+  <script>
+    if (location.hostname.endsWith('github.io')) location.replace('https://cbradev.ch/firn/guide');
+  </script>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="/firn"><img src="/firn/img/icon.svg" alt="" width="30" height="30">Firn</a>
+      <nav aria-label="Site">
+        <a class="hide-sm" href="/firn#features">Features</a>
+        <a href="/firn/guide" aria-current="page">Guide</a>
+        <a href="/firn#download">Download</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap guide">
+    <nav class="toc" aria-label="On this page">
+      <span class="signage">On this page</span>
+      <ol>
+        <li><a href="#getting-started">Getting started</a></li>
+        <li><a href="#getting-around">Getting around</a></li>
+        <li><a href="#omnibar-find-anything-do-anything">Omnibar: find anything, do anything</a></li>
+        <li><a href="#today">Today</a></li>
+        <li><a href="#calendar">Calendar</a></li>
+        <li><a href="#todos">Todos</a></li>
+        <li><a href="#notes">Notes</a></li>
+        <li><a href="#people">People</a></li>
+        <li><a href="#teaching-and-lesson-notes">Teaching and lesson notes</a></li>
+        <li><a href="#presenting">Presenting</a></li>
+        <li><a href="#morning-briefing-and-notifications">Morning briefing and notifications</a></li>
+        <li><a href="#accounts-and-sync">Accounts and sync</a></li>
+        <li><a href="#keyboard-reference">Keyboard reference</a></li>
+        <li><a href="#known-gaps">Known gaps</a></li>
+        <li><a href="#connecting-google">Connecting Google</a></li>
+      </ol>
+    </nav>
+    <article class="prose">
+      <h1>Using Firn</h1>
+      <p>Everything Firn does, one topic at a time. Generated from the app's own documentation.</p>
+<h2 id="getting-started">Getting started</h2>
+<ol>
+<li><strong>Download Firn</strong> from the <a href="/firn#download">download section</a> and open it. On a Mac the first start needs one extra step, described there.</li>
+<li><strong>Choose a notes folder.</strong> Firn keeps your notes as Markdown files in a folder you pick, or creates a new <code>Notes</code> folder. Changes made in other editors show up right away.</li>
+<li><strong>Add your calendars and contacts</strong> in Settings → Accounts. Several can be active at once:</li>
+</ol>
+<ul>
+<li><strong>On this computer</strong>: no syncing. Standard <code>.ics</code>/<code>.vcf</code> files inside your notes folder.</li>
+<li><strong>Nextcloud</strong>: sign in through the browser (Login Flow v2).</li>
+<li><strong>iCloud</strong>: Apple ID plus an app-specific password.</li>
+<li><strong>Google</strong>: OAuth with your own Google Cloud client; see <a href="#connecting-google">Connecting Google</a>.</li>
+<li><strong>Any CalDAV/CardDAV server</strong>: address, user name and password (discovered via <code>/.well-known</code>).</li>
+</ul>
+<p>Passwords and sign-ins live in your system keychain. Server accounts sync every five minutes and whenever you ask, and the last copy stays available offline.</p>
+<h2 id="getting-around">Getting around</h2>
+<ul>
+<li>The rail on the left holds the clock, the five screens (<strong>Today</strong>, <strong>Calendar</strong>, <strong>Todos</strong>, <strong>Notes</strong>, <strong>People</strong>, on ⌘1 … ⌘5), the <strong>Presenting</strong> switch, the sync status and <strong>Settings</strong> (⌘,).</li>
+<li>Badges on the rail count lesson notes still waiting (Today) and open todos (Todos).</li>
+<li>The theme follows the system unless set in Settings → Appearance (Match system / Light / Evening).</li>
+</ul>
+<h2 id="omnibar-find-anything-do-anything">Omnibar: find anything, do anything</h2>
+<p>Open it with ⌘K (Ctrl+K), or <code>/</code> when you&#39;re not typing. ⌥Space (Alt+Space on Linux) opens it above any other app. ↑/↓ move, ↵ runs the highlighted row, Esc closes. A badge next to the input shows how your text was read (New todo, New note, Question, Proposed).</p>
+<p><strong>Commands.</strong> With nothing typed you get the list: go to a screen, start/stop presenting, open the daily note, and &quot;New note from template: …&quot; for every note in <code>Templates/</code>. When a lesson has just ended, &quot;Add lesson note for …&quot; sits on top.</p>
+<p><strong>Search.</strong> Type words; a row matches when every word is in it. Searches events (two weeks back to three weeks ahead), notes, todos and people.</p>
+<pre><code>7b              → the 7b lessons and the 7b notebook
+anna            → Anna in People
+quiz            → todos and notes about quizzes
+</code></pre>
+<p><strong>Create without AI.</strong> Start with <code>todo</code> (or <code>task</code>), <code>event</code> (or <code>termin</code>) or <code>note</code>. Greyed-out hints in the input show the syntax you haven&#39;t used yet.</p>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>#tag</code></td>
+<td>project tag</td>
+</tr>
+<tr>
+<td><code>!high</code> (or <code>!</code>, <code>!!</code>, <code>!h</code>)</td>
+<td>high priority</td>
+</tr>
+<tr>
+<td><code>@List</code></td>
+<td>list (name or its beginning)</td>
+</tr>
+<tr>
+<td><code>today</code>, <code>tomorrow</code>, <code>fri</code>, <code>12.10.</code>, <code>2026-10-12</code> (also <code>heute</code>, <code>morgen</code>, <code>fr</code>)</td>
+<td>due date</td>
+</tr>
+</tbody></table>
+<pre><code>todo Mark quizzes #9a !high fri @School
+task Call plumber tomorrow
+note Ideas for parents evening          → Inbox/Ideas for parents evening
+note Projects/Garden plan               → that exact path
+</code></pre>
+<p>Events use the calendar&#39;s quick-add words: a date (<code>fri</code>, <code>12.10.</code>), a time (<code>16:30</code>), a duration (<code>30min</code>, <code>1h</code>, default one hour) and <code>@Calendar</code>. Without a date or time an event starts today at 09:00.</p>
+<pre><code>event Parent call fri 16:30 30min @School
+termin Zahnarzt 12.10. 15:00
+</code></pre>
+<p>A todo from the omnibar is due today unless you give a date. Any other text also offers &quot;New note …&quot; and &quot;Add todo …&quot; at the bottom.</p>
+<p><strong>Ask about your schedule.</strong> Questions are answered from your calendar and todos, no language model needed. A question ends in <code>?</code> or starts with <em>what, when, which, do I, have I, anything, was, wann, welche, habe ich, steht</em>.</p>
+<pre><code>what do I have tomorrow?
+anything on friday?
+was steht am 14.10. an?
+</code></pre>
+<p>You get that day&#39;s events and due todos plus &quot;Open … in Calendar&quot;; ↵ opens the first one.</p>
+<p><strong>Find the next or last one.</strong> Ask with <em>next</em> or <em>last</em> (also <em>nächste</em>, <em>letzte</em>) and the omnibar searches your calendars about a year ahead or back, in titles, places, notes and the people on an event.</p>
+<pre><code>when is my next therapy session?   → the next &quot;Therapie&quot; events, with &quot;in 9 days&quot;
+next meeting with Anna             → meetings Anna is on
+when was my last haircut?
+wann ist das nächste Elterngespräch?
+</code></pre>
+<p>Words no event contains (&quot;session&quot;) are skipped; every other word has to match. Questions about a date (&quot;what&#39;s on next week?&quot;) still go to the agenda.</p>
+<p><strong>Ask about a person.</strong> Name someone and what you want to know; the answer comes from their note in <code>People/</code>.</p>
+<pre><code>What could I gift Annika?        → the &quot;Gift ideas&quot; section of Annika&#39;s note
+Geschenkideen für Jonas          → same, in German
+is Anna allergic to anything?    → the lines in Anna&#39;s note that mention allergies
+anna ceramics                    → matching lines first, then the usual search results
+</code></pre>
+<p>A section whose heading matches the question answers it (gift questions find any heading with <em>gift</em>, <em>present</em> or <em>Geschenk</em>). Without one, the lines that mention the topic answer it, so unstructured notes work too. Gift questions always answer, with &quot;Nothing on gift ideas yet&quot; if there are none.</p>
+<p><strong>Sentences (optional local model).</strong> With Settings → Language models → Local model set to Ollama, a sentence of three or more words offers &quot;Turn into an action&quot;. ↵ reads it on this computer and proposes one todo, event or note; ↵ again does it.</p>
+<pre><code>lunch with Sarah next tuesday at 12:30 for 90 min   → event, Tue 12:30–14:00
+remind me to renew passport by Monday, urgent        → high-priority todo due Monday
+Zahnarzt am 12.10. um 15 Uhr                         → event
+idea: let students vote on the reading list          → new note
+</code></pre>
+<p>The model only sorts the sentence and picks out the words; the app works out dates, times (<code>12:30</code>, <code>3pm</code>, <code>15 Uhr</code>), durations (<code>for 2 hours</code>, <code>90 Minuten</code>) and priority (<em>important, urgent, asap, wichtig, dringend</em>). Install <a href="https://ollama.com">Ollama</a> and run <code>ollama pull qwen2.5:3b</code> (the recommended model: on a 16 GB M1 it read every test sentence correctly in about a second).</p>
+<p><strong>New note from a template.</strong> Pick &quot;New note from template: …&quot;, type the title, ↵. <code>{{title}}</code> and <code>{{date}}</code> are filled in; <em>Meeting</em> notes go to <code>Projects/</code>, others to <code>Inbox/</code>.</p>
+<h2 id="today">Today</h2>
+<ul>
+<li>The headline says what&#39;s next (&quot;Next: Maths · 7b at 09:55, Room 204&quot;) or what&#39;s running, and flips like a station board when that changes.</li>
+<li>The board lists today&#39;s timed events with their status: Now, Next, Later, Done, Cancelled, and for lessons Add note / Note later / No note / Noted. Click a row to see its notebook (with the last entry), people and calendar.</li>
+<li><strong>Lesson notes.</strong> When a lesson ends, a capture line asks &quot;What did 9a do in Maths today?&quot;. Type, ↵ (Shift+↵ for a new line). It&#39;s appended to the class notebook under <code>## YYYY-MM-DD · &lt;title&gt;</code>. <strong>Later</strong> (Esc) keeps it waiting; <strong>No note for this lesson</strong> dismisses it.</li>
+<li>The side column shows <strong>Due today</strong> (tick to complete), <strong>Birthdays</strong> in the next 14 days and today&#39;s <strong>Daily note</strong> (&quot;Open daily note&quot; / &quot;Start today&#39;s note&quot;).</li>
+</ul>
+<h2 id="calendar">Calendar</h2>
+<ul>
+<li><strong>Week</strong> and <strong>Month</strong> tabs, ‹ <strong>Today</strong> ›. Keys: <code>t</code> today, <code>w</code> week, <code>m</code> month, Alt+←/→ previous/next, Esc closes the editor.</li>
+<li><strong>Quick add</strong> (top line): <code>Parent call fri 16:30 30min @School</code>. Time <code>16:30</code>/<code>16.30</code>/<code>16h30</code>, duration <code>30min</code>/<code>1h</code> (default 60 min), date words as for todos, <code>@Calendar</code>. A date without a time starts at 09:00.</li>
+<li><strong>Mouse.</strong> Drag on empty space to create, drag an event to move it (also to another day), drag its bottom edge to resize. Snaps to 15 minutes. In Month, click a day to open its week.</li>
+<li><strong>Editor.</strong> Title, Calendar, Date, From, To, All day, Repeat (day/week/month), Class or Group, Place, People (type a name or a group), Notes. ⌘↵ saves. For a repeating event, Save and Delete ask: only this one, this and all following, or the whole series. Dragging a repeating event changes only that occurrence.</li>
+<li><strong>Calendars ▾</strong> shows or hides each calendar and changes its colour (eight hues; written back to the server when it allows).</li>
+<li>The <strong>Due</strong> strip above the grid shows todos per day; birthdays appear as all-day bars.</li>
+<li>Subscribed calendars are read-only.</li>
+</ul>
+<h2 id="todos">Todos</h2>
+<ul>
+<li><p><strong>Views:</strong> Today (overdue and due today), Upcoming, Lists (one list or all side by side), Projects (one #tag), From notes, No date, Done. Choose and reorder them in Settings → Todos.</p>
+</li>
+<li><p><strong>Quick add</strong> (⌘N): <code>Mark quizzes #9a !high fri @School</code>. New todos go into the list or project you&#39;re looking at; from the Today view they&#39;re due today.</p>
+</li>
+<li><p>Click a title to expand: steps (sub-tasks), notes, due date, list, linked note, tags, priority, delete. Completing a todo with open steps asks whether to complete them all.</p>
+</li>
+<li><p><strong>Todos in notes.</strong> Any checkbox in a note shows up under <em>From notes</em>:</p>
+<pre><code class="language-markdown">- [ ] Mark the 9a quizzes 📅 2026-10-09 #school ⏫
+- [x] Order goggles ✅ 2026-10-06
+</code></pre>
+<p><code>📅 date</code> makes it due, <code>⏫</code> or <code>🔺</code> high priority. Ticking it in the app rewrites the line and adds <code>✅ date</code>. These stay in your notes and are never sent to a server. Checkboxes under a <em>Gift ideas</em> heading are ideas, not todos, and are left out.</p>
+</li>
+</ul>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Notes are plain Markdown files in a folder you choose on first run (Settings → Notes folder → <strong>Choose…</strong>). The app creates <code>Daily/</code>, <code>People/</code>, <code>Projects/</code>, <code>Templates/</code> (and <code>Classes/</code> when teaching); <code>Inbox/</code> and <code>Books/</code> appear when needed. Changes from other editors show up live.</li>
+<li><strong>New note</strong>: ⌘N (opens the omnibar with <code>note </code>). <strong>New notebook</strong>: the folder-plus icon; <code>Projects/2026</code> nests it.</li>
+<li><strong>… menu</strong>: Rename (updates every link to it), Move to…, Delete (goes to <code>.home/trash/</code>, recoverable).</li>
+<li><strong>Editor.</strong> ⌘E switches Live and Source. Live renders Markdown in place and hides frontmatter behind a Properties block; edit frontmatter in Source. Checkboxes are clickable.</li>
+<li><strong>Links.</strong> Type <code>[[</code> to link another note (autocompletes). Also <code>[[Note|alias]]</code> and <code>[[Note#heading]]</code>. Click to follow (⌘-click on the line you&#39;re editing); a link to a note that doesn&#39;t exist yet creates it. Each note lists its backlinks at the bottom.</li>
+<li><strong>Daily note</strong>: <code>Daily/YYYY-MM-DD</code>, made from <code>Templates/Daily note</code>; <code>{{events}}</code> becomes the day&#39;s events with links to their notebooks.</li>
+<li><strong>Context panel</strong> (⌘J): local graph, outline, related lessons/events, people, file info. <strong>Graph</strong> (⌘G): every note and link, with a highlight search and an option to show missing notes. ⌘\ hides the folder pane.</li>
+<li>Frontmatter the app understands: <code>type</code>, <code>group</code>, <code>tags</code>, <code>contact</code>, <code>birthday</code>, <code>author</code>, <code>private: true</code> (hidden while presenting), <code>capture:</code> (see Teaching).</li>
+<li><strong>Import</strong> (Settings → Notes folder): <strong>Joplin</strong> (export as &quot;MD - Markdown + Front Matter&quot;, lands in <code>Joplin/</code>) and <strong>Reed</strong> (a <code>reed-notes</code> .json file, one note per book in <code>Books/</code>). Imports never overwrite.</li>
+</ul>
+<h2 id="people">People</h2>
+<ul>
+<li>Contacts from your address books plus people who exist only as notes in <code>People/</code>. Search &quot;Find a person&quot;, or filter by Everyone / contacts / only in my notes / a group.</li>
+<li><strong>New person</strong>: name, then &quot;Only in my notes&quot; or as a contact. <strong>Edit</strong>: role, phone, email, address, birthday (<code>10.10.</code> or <code>10.10.1958</code>), groups.</li>
+<li>Each person has a note (&quot;Start a note&quot;). New person notes start with the sections <strong>Gift ideas</strong>, <strong>To remember</strong> and <strong>Log</strong>, taken from <code>Templates/Person</code> (edit it to change them; without it the app uses these three). Structure is optional: the omnibar reads free text too. Each person also has a <strong>Mentioned in</strong> list of events, todos and notes that link to them. Birthdays show on Today, in the calendar and in the briefing.</li>
+</ul>
+<h2 id="teaching-and-lesson-notes">Teaching and lesson notes</h2>
+<ul>
+<li><p>Turn on <strong>I teach</strong> (first run or Settings). It switches wording to lessons and classes and adds <code>Classes/</code> and a Lesson template.</p>
+</li>
+<li><p>A class notebook asks for a note after each matching lesson. Its frontmatter:</p>
+<pre><code class="language-yaml">type: notebook
+group: 9a
+capture:
+  when: event-ends
+  calendar: Stundenplan   # optional
+  title: Mathematik 9a*   # * matches anything; without it, &quot;contains&quot;
+</code></pre>
+</li>
+<li><p>In People, filter by a group and choose <strong>Make 9a a class</strong> to create such a notebook. Settings → Teaching lists every trigger.</p>
+</li>
+</ul>
+<h2 id="presenting">Presenting</h2>
+<p>Turn it on with the rail switch, ⌘⇧P or the omnibar; it also starts by itself when a second display connects (Settings → Presenting). While presenting the app hides todos, people, contact notes and <code>private: true</code> notes, shows private events as &quot;Busy&quot;, holds lesson notes and notifications, and locks private events. Mark calendars private in Settings → Calendars &amp; lists.</p>
+<h2 id="morning-briefing-and-notifications">Morning briefing and notifications</h2>
+<p>At the time set in Settings → Morning briefing (default 07:15, optionally school days only) the app brings Today forward and sends a &quot;Good morning&quot; notification: today&#39;s events, todos due, birthdays. &quot;Notify when a lesson ends&quot; sends a notification after each lesson. Both need the app running: turn on <strong>Open at login</strong>. If the app wasn&#39;t running at that time, <strong>Catch up when the app starts later</strong> shows the briefing at start.</p>
+<h2 id="accounts-and-sync">Accounts and sync</h2>
+<p>Accounts are set up as in <a href="#getting-started">Getting started</a>. Day to day:</p>
+<ul>
+<li>Server accounts sync every five minutes, when you come back to the window, and with <strong>Sync</strong>. Offline, the last copy is shown and changes sync later.</li>
+<li>The first three saves to a server ask first (&quot;Don&#39;t ask again&quot;). If something changed elsewhere since the app last saw it, you choose <strong>Keep Nextcloud&#39;s</strong> (the server&#39;s version) or <strong>Use mine</strong>.</li>
+<li><strong>Notes sync</strong> (Settings → Notes sync, Nextcloud): pick a server folder and <strong>Turn on sync</strong>. Conflicts become <code>Name (conflict …).md</code> copies, listed in Settings. A sync that would delete many notes waits for you. Off automatically for folders already synced by iCloud Drive, Dropbox, Syncthing or the Nextcloud desktop app.</li>
+<li><strong>Reed book notes</strong>: with notes sync on, Settings → Notes sync → Book notes from Reed → <strong>Pick up</strong>. Notes from Reed appear in <code>Books/</code>; edits go both ways.</li>
+</ul>
+<h2 id="keyboard-reference">Keyboard reference</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Where</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>⌘K / Ctrl+K, or <code>/</code></td>
+<td>anywhere</td>
+<td>Omnibar</td>
+</tr>
+<tr>
+<td>⌥Space (Alt+Space)</td>
+<td>any app</td>
+<td>Omnibar overlay (desktop app; change it in Settings → Keyboard)</td>
+</tr>
+<tr>
+<td>⌘1 … ⌘5</td>
+<td>anywhere</td>
+<td>Today, Calendar, Todos, Notes, People</td>
+</tr>
+<tr>
+<td>⌘,</td>
+<td>anywhere</td>
+<td>Settings</td>
+</tr>
+<tr>
+<td>⌘⇧P</td>
+<td>anywhere</td>
+<td>Presentation mode on/off</td>
+</tr>
+<tr>
+<td>↑ / ↓, ↵</td>
+<td>Today, lists</td>
+<td>Move, open a row</td>
+</tr>
+<tr>
+<td>↵ / Esc</td>
+<td>lesson note</td>
+<td>Add it / later</td>
+</tr>
+<tr>
+<td><code>t</code> <code>w</code> <code>m</code>, Alt+← →</td>
+<td>Calendar</td>
+<td>Today, week, month, previous/next</td>
+</tr>
+<tr>
+<td>⌘↵</td>
+<td>event editor</td>
+<td>Save</td>
+</tr>
+<tr>
+<td>⌘N</td>
+<td>Todos, Notes</td>
+<td>New todo / new note</td>
+</tr>
+<tr>
+<td>⌘E, ⌘J, ⌘G, ⌘\</td>
+<td>Notes</td>
+<td>Live/Source, context panel, graph, folder pane</td>
+</tr>
+</tbody></table>
+<h2 id="known-gaps">Known gaps</h2>
+<ul>
+<li>Todos written in notes can&#39;t be promoted to a server list yet.</li>
+<li>Only &quot;event ends&quot; triggers fire; there is no trigger editor besides <strong>Make class</strong>.</li>
+<li>No cloud model yet; notebooks (folders) can&#39;t be renamed or deleted; contacts can&#39;t be deleted.</li>
+</ul>
+<h2 id="connecting-google">Connecting Google</h2>
+<p>Google only lets an app read and write calendars and contacts after the app is registered with Google. Because this app is just for you, you register it once in your own (free) Google Cloud project. It takes about 10 minutes.</p>
+<h3 id="1-create-a-project">1. Create a project</h3>
+<ol>
+<li>Open <a href="https://console.cloud.google.com/">https://console.cloud.google.com/</a> and sign in with the Google account whose calendars you want.</li>
+<li>Top bar → project picker → <strong>New project</strong>. Name it e.g. <code>Firn</code>. Create it and select it.</li>
+</ol>
+<h3 id="2-turn-on-the-two-apis">2. Turn on the two APIs</h3>
+<ol>
+<li>Menu → <strong>APIs &amp; Services → Library</strong>.</li>
+<li>Search <strong>CalDAV API</strong> → <strong>Enable</strong>.</li>
+<li>Search <strong>Google Contacts CardDAV API</strong> → <strong>Enable</strong>.</li>
+</ol>
+<h3 id="3-consent-screen">3. Consent screen</h3>
+<ol>
+<li><strong>APIs &amp; Services → OAuth consent screen</strong> (or <em>Google Auth Platform → Branding</em>).</li>
+<li>User type <strong>External</strong> → Create. App name <code>Firn</code>, your email as support and developer contact. Save.</li>
+<li><strong>Audience / Test users</strong> → <strong>Add users</strong> → add your own Google address. (While the app is in <em>Testing</em>, only listed users can sign in. That&#39;s what you want.)</li>
+<li><strong>Data access / Scopes</strong>: you can leave this empty; the app asks for the calendar and contacts scopes when you sign in.</li>
+</ol>
+<h3 id="4-create-the-client">4. Create the client</h3>
+<ol>
+<li><strong>APIs &amp; Services → Credentials → Create credentials → OAuth client ID</strong>.</li>
+<li>Application type <strong>Desktop app</strong>. Name <code>Firn desktop</code>. Create.</li>
+<li>Copy the <strong>Client ID</strong> and <strong>Client secret</strong>. (For desktop apps Google doesn&#39;t treat the secret as confidential; it identifies the app, it doesn&#39;t unlock your data.)</li>
+</ol>
+<h3 id="5-sign-in-from-the-app">5. Sign in from the app</h3>
+<p>Settings → Accounts → Add an account → <strong>Google</strong> → paste the client ID and secret → <strong>Sign in with Google</strong>. Your browser opens Google&#39;s consent page; after you allow access the app stores a refresh token in your system keychain.</p>
+<h4 id="if-something-goes-wrong">If something goes wrong</h4>
+<ul>
+<li><em>&quot;Access blocked: app has not completed verification&quot;</em>: your address isn&#39;t in <strong>Test users</strong> (step 3.3).</li>
+<li><em>&quot;redirect_uri_mismatch&quot;</em>: the client isn&#39;t a <strong>Desktop app</strong> (step 4.2). Desktop clients accept the app&#39;s <code>http://127.0.0.1:&lt;port&gt;</code> redirect automatically.</li>
+<li>In <em>Testing</em> mode Google expires refresh tokens after 7 days. To stop that, publish the app (consent screen → <em>Publish app</em>); for personal use Google doesn&#39;t require verification, you&#39;ll just see an &quot;unverified app&quot; warning once.</li>
+</ul>
+
+    </article>
+  </main>
+  <footer>
+    <div class="wrap">
+      <a class="brand" href="/firn"><img src="/firn/img/icon.svg" alt="" width="24" height="24">Firn</a>
+      <span>Made by <a href="https://cbradev.ch">Claudio Brasser</a></span>
+      <a href="/firn#download">Download</a>
+      <span>No cookies, no tracking.</span>
+    </div>
+  </footer>
+</body>
+</html>
